@@ -21,8 +21,15 @@ export default class InputManager extends Component {
         this.setState({
             text: text
         });
-        console.log(text);
     }
+
+    handleOnSubmit = (event: object) =>{
+        if (this.state.isValid) {
+            this.props.createMessage('user', this.state.text, new Date());
+            this.refs.TextInput.clearTextArea();
+        }
+    }
+
 
     render() {
         return (
@@ -31,8 +38,13 @@ export default class InputManager extends Component {
                     placeholder={'Enter your thoughts...'}
                     onValid={this.handleValidate}
                     onChange={this.handleOnTextChange}
+                    clearTextArea={this.handleClearTextArea}
+                    ref={'TextInput'}
                 />
-                <SubmitButton disabled={!this.state.isValid}/>
+                <SubmitButton
+                    disabled={!this.state.isValid}
+                    onSubmit={this.handleOnSubmit}
+                />
             </div>
         );
     }
