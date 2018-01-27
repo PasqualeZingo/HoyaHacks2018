@@ -7,8 +7,7 @@ export default class TextInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
-            height: '3em'
+            value: ''
         }
     }
 
@@ -17,10 +16,15 @@ export default class TextInput extends Component {
         autosize(this.textarea);
     }
 
-    handleOnChange = (event) => {
+    handleOnChange = (event: Object) => {
         const value = event.target.value;
         this.setState({ value: value });
-        console.log(value);
+        this.props.onChange(value);
+        if (value) {
+            this.props.onValid(true);
+        } else {
+            this.props.onValid(false);   
+        }
     }
 
     render(){

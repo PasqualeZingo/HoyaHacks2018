@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import TextInput from './components/text-input/index';
+import InputManager from './components/input-manager/index';
+import Conversation from './components/conversation/index';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <TextInput
-          placeholder={'Enter your thoughts...'}
-        />
+        <Conversation />
+        <InputManager />
       </div>
     );
   }

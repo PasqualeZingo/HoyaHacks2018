@@ -1,0 +1,32 @@
+.button-wrapper {
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+}
+
+button {
+    background:none;
+    width:150px;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    color:#FFEA53;
+    border-radius:5px;
+    border:1px solid #FFEA53;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:disabled {
+    background:  #d6d6d6;
+    color:  #f3f1f0;
+    border-color: #f3f1f0;
+}
+
+button:hover:enabled {
+    background:#FFEA53;
+    color:#121212;
+}

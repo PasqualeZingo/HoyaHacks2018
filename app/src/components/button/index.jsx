@@ -3,6 +3,11 @@ import './button.css';
 
 export default class SubmitButton extends Component {
     render() {
-        <button />
+        console.log(this.props.disable);
+        return(
+            <div className='button-wrapper'>
+                <button disabled={this.props.disabled}>{'Submit'}</button>
+            </div>
+        );
     }
 }
