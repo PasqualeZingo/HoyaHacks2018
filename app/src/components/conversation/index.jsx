@@ -5,30 +5,35 @@ export default class Conversation extends Component {
     
     constructor(props) {
         super(props);
-        this.state = {
-            messages: [
-                {
-                    user: 'computer',
-                    text: 'Hello world, I am a computer'
-                },
-                {
-                    user: 'Me',
-                    text: 'Hello world, I am a person'
-                }
-            ]
-        };
+    }
+
+    componentDidUpdate() {
+        this.refs.MessageWrapper.scrollTop = this.refs.MessageWrapper.scrollHeight;
     }
 
     render() {
+        const visibility = this.props.visible? 'visible' : 'hidden'; 
         return(
-            <div className='conversation-wrapper'>
-                <div className='message-wrapper'>
-                    <p className='message-left'>
-                        {'message here message here message here message here message here'}
-                    </p>
-                    <p className='message-right'>
-                        {'message here message here message here message here message here'}
-                    </p>
+            <div
+                className='conversation-wrapper'
+                style={{ visibility: visibility }}
+            >
+                <div
+                    className='message-wrapper'
+                    ref={'MessageWrapper'}>
+                    {this.props.messages.map((message, index) => {
+                        return (
+                            <div
+                                className={message.user === 'computer'? 'message-left' : 'message-right'}
+                                key={index}
+                            >
+                                <p>
+                                    {message.text}
+                                </p>
+                                <p className={'date'}>{message.time}</p>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         );

@@ -27,6 +27,14 @@ export default class TextInput extends Component {
         }
     }
 
+    clearTextArea = () => {
+        this.setState({
+            value: ''
+        });
+        this.props.onValid(false);
+        this.textarea.value = ''; 
+    }
+
     render(){
         return(
             <div className="text-input">

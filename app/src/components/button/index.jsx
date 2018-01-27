@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import './button.css';
 
 export default class SubmitButton extends Component {
+
+    onClick = (event: object) => {
+        this.props.onSubmit();
+    }
+
     render() {
-        console.log(this.props.disable);
         return(
             <div className='button-wrapper'>
-                <button disabled={this.props.disabled}>{'Submit'}</button>
+                <button
+                    disabled={this.props.disabled}
+                    onClick={this.onClick}
+                >{'Submit'}</button>
             </div>
         );
     }
