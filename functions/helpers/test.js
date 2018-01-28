@@ -53,3 +53,14 @@ function processResponse(err, response) {
     }, processResponse)
   }
 }
+
+module.exports = {
+  startConversation = () => {
+    conversation.message({workspace_id : '5ccf293c-d157-4894-bf69-c5306003eccf'}, processResponse);
+  },
+  handleReply = (message) => {
+    conversation.message({workspace_id : '5ccf293c-d157-4894-bf69-c5306003eccf',
+                          input        : { text: message },
+                          context      : response.context}, processResponse);
+  }
+}
