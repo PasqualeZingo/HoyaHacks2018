@@ -19,11 +19,41 @@ app.post('/message', (req, res) => {
           // do request
         }
         const key = admin.database().ref('/Users/').child(message.user).child('/conversations/').child('uniquekey/').child('messages/').push().key;
+<<<<<<< HEAD
         return admin.database().ref('/Users/')
           .child(message.user).child('/conversation/')
             .child('messages/').child(key).set(message).then(()=>{
               return res.status(200).end();
             });      
+=======
+        return admin.database().ref('/Users/').child(message.user).child('/conversation/').child('messages/').child(key).set(message).then(()=>{
+                var tone_analyzer = new ToneAnalyzerV3({
+                        username: '3b4be1ed-7fb7-4df0-9642-dd12906ee300',
+                        password: 'pBbC6UECVqIO',
+                        version_date: '2017-09-21'
+                    });
+                var params = {
+                    'tone_input': {"text" : message.text},
+                    'content_type': 'application/json'
+                };
+		console.log("here comes tone");
+                return tone_analyzer.tone(params, function(error, response) {
+                        if (error)
+			    {    console.log('error:', error);
+				return error;
+			    }
+                        else
+			    {
+				console.log(JSON.stringify(response, null, 2));
+				return JSON.stringify(response, null, 2);
+			    }
+                    });
+            }, err =>{
+		console.log(err);
+            }).then((watson)=>{
+                    return res.status(200).end();
+	    });
+>>>>>>> 3ee9c1a0f811f27a6120c6fce73ad9a062599b11
 });
 
 let getTone = () => {

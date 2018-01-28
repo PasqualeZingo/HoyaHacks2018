@@ -38,7 +38,7 @@ let processResponse = (err, response) => {
   }
 }
 module.exports = {
-<<<<<<< HEAD
+
     startConversation : (callback) => {
     // return new Promise( (res, rej) => {res(conversation.message({workspace_id : '5ccf293c-d157-4894-bf69-c5306003eccf'}, processResponse))});
     return Promise.resolve(conversation.message({workspace_id : '5ccf293c-d157-4894-bf69-c5306003eccf'}, callback));
@@ -46,14 +46,5 @@ module.exports = {
     handleReply : (callback, message) => {
     return Promise.resolve(conversation.message({workspace_id : '5ccf293c-d157-4894-bf69-c5306003eccf',
                           input        : { text: message },}, callback));
-=======
-    startConversation:() => {
-    conversation.message({workspace_id : '5ccf293c-d157-4894-bf69-c5306003eccf'}, processResponse);
-  },
-    handleReply:(message) => {
-    conversation.message({workspace_id : '5ccf293c-d157-4894-bf69-c5306003eccf',
-                          input        : { text: message },
-                          context      : response.context}, processResponse);
->>>>>>> 28e33a4cd2bf3b0f06a03c89712bd1d4953b7f48
   }
 }
