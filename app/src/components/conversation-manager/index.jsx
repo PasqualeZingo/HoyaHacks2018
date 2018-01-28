@@ -17,11 +17,13 @@ export default class ConversationManager extends Component {
         const conRef = firebase.database().ref('Users/UserName/conversation/messages/');
         conRef.on('value', function(snap) {
             const messagesObject = snap.val();
-            const keys = Object.keys(messagesObject);
             let messages = this.state.messages;
-            keys.forEach((key) => {
-                messages.push(messagesObject[key]);
-            });
+            if(messagesObject) {
+                const keys = Object.keys(messagesObject);
+                keys.forEach((key) => {
+                    messages.push(messagesObject[key]);
+                });
+            }
             this.setState({
                 messages: messages
             });
@@ -56,6 +58,12 @@ export default class ConversationManager extends Component {
         });
     }
 
+    handleResetConversation = () => {
+        this.setState({
+            messages: []
+        });
+    }
+
     render() {
         return(
             <div className='conversation-manager'>
@@ -66,6 +74,7 @@ export default class ConversationManager extends Component {
                 />
                 <InputManager
                     createMessage={this.createMessage}
+                    onResetConversation={this.handleResetConversation}
                 />
             </div>
         );
