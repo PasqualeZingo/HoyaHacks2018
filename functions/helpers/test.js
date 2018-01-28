@@ -36,7 +36,7 @@ function processResponse(err, response) {
     endConversation = true;
   } else {
     // Display the output from dialog, if any.
-    if (response.output.text.length != 0) {
+    if (response.output.text.length !== 0) {
         console.log(response.output.text[0]);
         console.log(JSON.stringify(response, null, 2));
       }

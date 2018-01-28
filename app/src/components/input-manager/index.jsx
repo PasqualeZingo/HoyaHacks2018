@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TextInput from '../text-input/index';
 import Button from '../button/index';
+import firebase from '../../firebase';
 export default class InputManager extends Component {
     
     constructor(props){
@@ -30,6 +31,10 @@ export default class InputManager extends Component {
         }
     }
 
+    handleOnNewConversation = () => {
+        firebase.database().ref('Users/UserName/conversation/').remove();
+        this.props.onResetConversation();
+    }
 
     render() {
         return (
@@ -50,10 +55,16 @@ export default class InputManager extends Component {
                     <Button
                         disabled={!this.state.isValid}
                         onSubmit={this.handleOnSubmit}
+                        type={'submit'}
                     >
                         {'Submit'}
                     </Button>
-                    <Button>{'New Conversation'}</Button>
+                    <Button
+                        onNewConversation={this.handleOnNewConversation}
+                        type={'new_conversation'}
+                    >
+                        {'New Conversation'}
+                    </Button>
                 </div>
             </div>
         );
