@@ -23,7 +23,7 @@ app.post('/message', (req, res) => {
                         version_date: '2017-09-21'
                     });
                 var params = {
-                    'tone_input': {"text" : req.body.message},
+                    'tone_input': {"text" : message.text},
                     'content_type': 'application/json'
                 };
 		console.log("here comes tone");
