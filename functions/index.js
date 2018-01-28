@@ -5,6 +5,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
+const watson = require('./helpers/test.js')
+
 // middleware
 app.use(bodyParser.json());
 app.use(cors({ origin: true }));
@@ -19,6 +21,17 @@ app.post('/message', (req, res) => {
             return res.status(200).end();
         });
 });
-
+app.post('/startConvo', (req, res) => {
+    watson.startConversation()
+        .then( watMessage => {
+            res.status(200).json({reply:watMessage});
+        });
+});
+app.post('/handleReply', (req, res_) => {
+    watson.handleReply(req.body.message)
+        .then( watMessage => {
+            res.status(200).json({reply:watMessage});
+        });
+});
 
 exports.app = functions.https.onRequest(app);
