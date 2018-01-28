@@ -20,9 +20,8 @@ app.post('/message', (req, res) => {
           var options = { method: 'POST',
           url: 'https://us-central1-hoyahacks2018.cloudfunctions.net/app/handleReply',
           headers: 
-           { 'postman-token': 'bc27c81c-5d56-9fed-9075-8bc346a85bb2',
-             'cache-control': 'no-cache',
-             'content-type': 'application/x-www-form-urlencoded' },
+           { 
+             'content-type': 'application/json' },
           form: { message: req.body.text } };
         
         request(options, function (error, response, body) {
@@ -32,9 +31,9 @@ app.post('/message', (req, res) => {
         });
         
         }
-        const key = admin.database().ref('/Users/').child(message.user).child('/conversations/').child('uniquekey/').child('messages/').push().key;
+        const key = admin.database().ref('/Users/').child('User1').child('/conversations/').child('uniquekey/').child('messages/').push().key;
         return admin.database().ref('/Users/')
-          .child(message.user).child('/conversation/')
+          .child('User1').child('/conversation/')
             .child('messages/').child(key).set(message).then(()=>{
               return res.status(200).end();
             });      
@@ -95,8 +94,8 @@ app.post('/startConvo', (req, res) => {
               user: 'computer',
               time: '123'
             }
-          const key = admin.database().ref('/Users/').child(message.user).child('/conversations/').child('uniquekey/').child('messages/').push().key;
-          return admin.database().ref('/Users/').child(message.user)
+          const key = admin.database().ref('/Users/').child('User1').child('/conversations/').child('uniquekey/').child('messages/').push().key;
+          return admin.database().ref('/Users/').child('User1')
             .child('/conversation/').child('messages/').child(key).set(message).then(()=>{
               return res.status(200).end();
             });
@@ -129,8 +128,8 @@ app.post('/handleReply', (req, res) => {
               user: 'computer',
               time: '123'
             }
-            const key = admin.database().ref('/Users/').child(message.user).child('/conversations/').child('uniquekey/').child('messages/').push().key;
-            return admin.database().ref('/Users/').child(message.user)
+            const key = admin.database().ref('/Users/').child('User1').child('/conversations/').child('uniquekey/').child('messages/').push().key;
+            return admin.database().ref('/Users/').child('User1')
               .child('/conversation/').child('messages/').child(key).set(message).then(()=>{
                 return res.status(200).end();
               });
