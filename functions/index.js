@@ -21,17 +21,60 @@ app.post('/message', (req, res) => {
             return res.status(200).end();
         });
 });
+
+
 app.post('/startConvo', (req, res) => {
-    watson.startConversation()
-        .then( watMessage => {
-            res.status(200).json({reply:watMessage});
-        });
+    let processResponse = (err, response) => {
+        if (err) {
+          console.error(err); // something went wrong
+          return res.status(500).send(err);
+        }
+      
+        var endConversation = false;
+      
+        // Check for action flags.
+        if (response.output.action === 'display_time') {
+          // User asked what time it is, so we output the local system time.
+          console.log('The current time is ' + new Date().toLocaleTimeString());
+        } else if (response.output.action === 'end_conversation') {
+          // User said goodbye, so we're done.
+          console.log(response.output.text[0]);
+          endConversation = true;
+        } else {
+          // Display the output from dialog, if any.
+          if (!!response.output.text.length != 0) {
+            return res.send(response.output.text[0]);
+          }
+        }
+      }
+    return (watson.startConversation(processResponse));
 });
-app.post('/handleReply', (req, res_) => {
-    watson.handleReply(req.body.message)
-        .then( watMessage => {
-            res.status(200).json({reply:watMessage});
-        });
+app.post('/handleReply', (req, res) => {
+    //res.send("hi :c");
+    
+    let processResponse = (err, response) => {
+        if (err) {
+          console.error(err); // something went wrong
+          return res.status(500).send(err);
+        }
+        var endConversation = false;
+      
+        // Check for action flags.
+        if (response.output.action === 'display_time') {
+          // User asked what time it is, so we output the local system time.
+          console.log('The current time is ' + new Date().toLocaleTimeString());
+        } else if (response.output.action === 'end_conversation') {
+          // User said goodbye, so we're done.
+          console.log(response.output.text[0]);
+          endConversation = true;
+        } else {
+          // Display the output from dialog, if any.
+          if (!!response.output.text.length != 0) {
+            return res.send(response.output.text[0]);
+        }
+        }
+      }
+    return watson.handleReply(processResponse, req.body.message);
 });
 
 exports.app = functions.https.onRequest(app);
