@@ -55,10 +55,10 @@ function processResponse(err, response) {
 }
 
 module.exports = {
-  startConversation = () => {
+    startConversation:() => {
     conversation.message({workspace_id : '5ccf293c-d157-4894-bf69-c5306003eccf'}, processResponse);
   },
-  handleReply = (message) => {
+    handleReply:(message) => {
     conversation.message({workspace_id : '5ccf293c-d157-4894-bf69-c5306003eccf',
                           input        : { text: message },
                           context      : response.context}, processResponse);
