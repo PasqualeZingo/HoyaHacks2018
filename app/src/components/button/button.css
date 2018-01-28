@@ -1,10 +1,9 @@
 .button-wrapper {
-    display: flex;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 1%;
+    display: inline-flex;
+    flex-direction: column;
+    align-content: center;
+    padding-left: 1%;
+    padding-right: 1%;
 }
 
 button {

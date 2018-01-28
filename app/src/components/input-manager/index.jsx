@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TextInput from '../text-input/index';
-import SubmitButton from '../button/index';
+import Button from '../button/index';
 export default class InputManager extends Component {
     
     constructor(props){
@@ -25,7 +25,7 @@ export default class InputManager extends Component {
 
     handleOnSubmit = (event: object) =>{
         if (this.state.isValid) {
-            this.props.createMessage('user', this.state.text, new Date());
+            this.props.createMessage('UserName', this.state.text, new Date());
             this.refs.TextInput.clearTextArea();
         }
     }
@@ -33,7 +33,7 @@ export default class InputManager extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{ display: 'grid' }}>
                 <TextInput
                     placeholder={'Enter your thoughts...'}
                     onValid={this.handleValidate}
@@ -41,10 +41,20 @@ export default class InputManager extends Component {
                     clearTextArea={this.handleClearTextArea}
                     ref={'TextInput'}
                 />
-                <SubmitButton
-                    disabled={!this.state.isValid}
-                    onSubmit={this.handleOnSubmit}
-                />
+                <div className='buttons-wrapper' style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    flexAlign: 'center',
+                    margin: '0 auto'
+                    }}>
+                    <Button
+                        disabled={!this.state.isValid}
+                        onSubmit={this.handleOnSubmit}
+                    >
+                        {'Submit'}
+                    </Button>
+                    <Button>{'New Conversation'}</Button>
+                </div>
             </div>
         );
     }
