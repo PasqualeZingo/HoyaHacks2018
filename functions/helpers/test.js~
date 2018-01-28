@@ -55,10 +55,17 @@ function processResponse(err, response) {
 }
 
 module.exports = {
+<<<<<<< HEAD
     startConversation:() => {
     conversation.message({workspace_id : '5ccf293c-d157-4894-bf69-c5306003eccf'}, processResponse);
   },
     handleReply:(message) => {
+=======
+    startConversation : () => {
+    conversation.message({workspace_id : '5ccf293c-d157-4894-bf69-c5306003eccf'}, processResponse);
+  },
+    handleReply : (message) => {
+>>>>>>> 6fa0e2233fddb76df635fefc3a67d3feae9272bc
     conversation.message({workspace_id : '5ccf293c-d157-4894-bf69-c5306003eccf',
                           input        : { text: message },
                           context      : response.context}, processResponse);

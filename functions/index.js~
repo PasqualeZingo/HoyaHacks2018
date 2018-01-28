@@ -26,7 +26,6 @@ app.post('/message', (req, res) => {
                     'tone_input': {"text" : req.body.message},
                     'content_type': 'application/json'
                 };
-		console.log("here comes tone");
                 return tone_analyzer.tone(params, function(error, response) {
                         if (error)
 			    {    console.log('error:', error);
