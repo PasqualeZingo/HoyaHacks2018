@@ -4,7 +4,11 @@ import './button.css';
 export default class Button extends Component {
 
     onClick = (event: object) => {
-        this.props.onSubmit();
+        if (this.props.type === 'submit') {
+            this.props.onSubmit();
+        } else {
+            this.props.onNewConversation();
+        }
     }
 
     render() {
