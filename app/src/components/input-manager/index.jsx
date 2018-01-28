@@ -26,13 +26,13 @@ export default class InputManager extends Component {
 
     handleOnSubmit = (event: object) =>{
         if (this.state.isValid) {
-            this.props.createMessage('UserName', this.state.text, new Date());
+            this.props.createMessage('user', this.state.text, new Date());
             this.refs.TextInput.clearTextArea();
         }
     }
 
     handleOnNewConversation = () => {
-        firebase.database().ref('Users/UserName/conversation/').remove();
+        firebase.database().ref('Users/User1/conversation/').remove();
         this.props.onResetConversation();
     }
 

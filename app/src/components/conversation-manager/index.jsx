@@ -14,7 +14,7 @@ export default class ConversationManager extends Component {
     }
 
     componentDidMount() {
-        const conRef = firebase.database().ref('Users/UserName/conversation/messages/');
+        const conRef = firebase.database().ref('Users/User1/conversation/messages/');
         conRef.on('value', function(snap) {
             const messagesObject = snap.val();
             let messages = this.state.messages;
